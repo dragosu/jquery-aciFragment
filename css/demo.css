@@ -1,0 +1,27 @@
+
+body {
+    margin:0;
+    padding:10px;
+    color: #000;
+}
+body>div {
+    margin-bottom:100px;
+    overflow:auto;
+}
+body * {
+    font-family:Verdana, Geneva, sans-serif;
+    font-size:12px;
+}
+p.section {
+    margin:10px 10px 10px 10px;
+    padding:10px 10px 300px 10px;
+    border:1px solid #ccc;
+    background-color:#eee;
+}
+.ui-tabs {
+    width:600px;
+    margin:40px 0 40px 0;
+}
+.ui-tabs .ui-tabs {
+    width:auto;
+}

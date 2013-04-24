@@ -1,0 +1,280 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="language" content="en" />
+        <title>aciFragment v1.0.0 - Store/read URL fragment variables</title>
+        <meta name="description" content="aciFragment API documentation" />
+        <style type="text/css">
+            html {
+                height: 100%;
+            }
+            html * {
+                margin:0;
+                padding:0;
+            }
+            body {
+                color:#036;
+                font-family:Verdana, Geneva, sans-serif;
+                font-size:14px;
+                max-width:900px;
+                height: 100%;
+                background-color:#eee;
+                margin:20px auto 20px auto;
+            }
+            a, a:visited {
+                color:#333;
+            }
+            a:hover {
+                text-decoration:none;
+            }
+            .body {
+                width:100%;
+                min-height:100%;
+            }
+            ul {
+                list-style:outside;
+                list-style-type:circle;
+                margin:20px 0 20px 18px;
+            }
+            li {
+                margin:4px 0 4px 0;
+            }
+            h1, h2, h3 {
+                color:#930;
+                margin:30px 0 20px 0;
+            }
+            h1 {
+                font-size:1.2em;
+            }
+            h2 {
+                font-size:1.1em;
+            }
+            h3 {
+                font-size:1em;
+            }
+            p {
+                margin-top:10px;
+                margin-bottom:10px;
+            }
+            .api-extensions label {
+                display:inline-block;
+                width:270px;
+                padding-right: 10px;
+                height:25px;
+                font-weight:bold;
+                cursor:pointer;
+            }
+            .api-events label {
+                display:inline-block;
+                width:140px;
+                padding-right: 10px;
+                height:25px;
+                font-weight:bold;
+                color:#993300;
+            }
+            .api {
+                padding:10px 0 10px 0;
+            }
+            .api>div {
+                margin:10px 0 10px 0;
+                opacity:0.9;
+            }
+            .api>div:hover {
+                opacity:1;
+            }
+            .api>div em {
+                color:#993300;
+                font-weight:bold;
+            }
+            .api div span {
+                display:block;
+                font-weight:bold;
+                margin:10px 0 10px 0;
+            }
+            .api div>span:first-child {
+                background-color:#003366;
+                color:#fff;
+                line-height:30px;
+                padding-left:10px;
+            }
+            .api div>span:first-child>span {
+                padding-left:10px;
+                font-style:italic;
+                font-size:0.9em;
+                color:#ccc;
+            }
+            .api div>span:first-child a {
+                float:right;
+                color:#fff;
+                font-weight:bold;
+                text-decoration:none;
+                padding-right:10px;
+                font-size:12px;
+            }
+            .api div span>span {
+                font-weight:normal;
+                display:inline;
+            }
+            .api div span.where>span {
+                display:block;
+                font-weight:bold;
+            }
+            .api div span.where {
+                display:block;
+                font-weight:normal !important;
+                padding-left:40px;
+            }
+            .api div>span.where {
+                display:block;
+            }
+            .api div ul {
+                list-style:none;
+                margin:0;
+                display:inline;
+            }
+            .api div ul>li {
+                padding-left:40px;
+            }
+            .api div ul>li:first-child {
+                display:inline;
+                padding-left:0;
+            }
+            .api div ul>li:last-child {
+                padding-left:0;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>aciFragment API v1.0.0</h1>
+
+                <div class="api"><span class="toc"><a title=".click (link, scroll)" href="#.click">.click -  Process the HREF attribute of a link and set the key/value pairs found...</a><br><a title=".destroy ()" href="#.destroy">.destroy -  Destroys the aciFragment instance.
+                    Under normal use - it...</a><br><a title=".get (key, defaultValue)" href="#.get">.get -  Returns the value assigned to a key (or a default value)...</a><br><a title=".getAnchor (defaultValue)" href="#.getAnchor">.getAnchor -  Returns the current anchor value (or a default value)...</a><br><a title=".hasAnchor (pairs)" href="#.hasAnchor">.hasAnchor -  Returns TRUE if pairs has the anchor property defined...</a><br><a title=".init ()" href="#.init">.init -  Init the aciFragment plugin.
+                    In normal use - aciFragment...</a><br><a title=".parse (url)" href="#.parse">.parse -  Parse the fragment section of an URL to create a list of key/value pairs...</a><br><a title=".parseHash ()" href="#.parseHash">.parseHash -  Parse the current fragment section of the URL to create a list of key/value...</a><br><a title=".replace (pairs)" href="#.replace">.replace -  Replace the fragment portion with the variables defined by the key/value...</a><br><a title=".scroll ()" href="#.scroll">.scroll -  Scrolls the document to the current anchor.
+                    A test is made...</a><br><a title=".set (key, value)" href="#.set">.set -  Sets a new value for the key.
+                    
+                    If...</a><br><a title=".setAnchor (anchor)" href="#.setAnchor">.setAnchor -  Sets a new value for the anchor.
+                    
+                     The...</a><br><a title=".update (pairs)" href="#.update">.update -  Change the variables defined by the key/value pairs...</a><br><a title=".wasInit ()" href="#.wasInit">.wasInit -  Returns TRUE if the plugin has been initialized.
+                </a><br></span>
+
+                <a name=".click"></a><div><span>.click (link, scroll)</span> Process the <i>HREF</i> attribute of a <b>link</b> and set the key/value pairs found.
+                    <span class="where">
+                        where:
+                        <span>link<span> jQuery object</span></span> object of type <i>A</i>
+                        <span>scroll<span> (boolean)</span></span> if <i>TRUE</i>, a scroll of the contents to the current anchor will be made
+                    </span>
+                    A test is made to see if the fragment portion of current URL contain the variable named <b>options.anchor</b> before 
+                    a scroll to the anchor defined by the value of the variable is made.
+                    <b>.click</b> calls <b>.scroll</b> to do the document scroll to the anchor.
+                </div>
+
+                <a name=".destroy"></a><div><span>.destroy ()</span> Destroys the aciFragment instance.
+                    Under normal use - it should not be necessary to call <b>.destroy</b>.
+                </div>                
+
+                <a name=".get"></a><div><span>.get (key, defaultValue)</span> Returns the value assigned to a key (or a default value).
+                    <span class="where">
+                        where:
+                        <span>key<span> (string)</span></span> key name
+                        <span>defaultValue<span> (string)</span></span> the default value (if the key does not exists)
+                    </span>
+                    <b>.get</b> calls <b>.parseHash</b> to determine the current value of the variables in the fragment section of the current URL.
+                </div>               
+                
+                <a name=".getAnchor"></a><div><span>.getAnchor (defaultValue)</span> Returns the current anchor value (or a default value).
+                    <span class="where">
+                        where:
+                        <span>defaultValue<span> (string)</span></span> the default value (if the anchor does not exists)
+                    </span>
+                    A test will be made to see if the fragment portion of current URL contains the variable named <b>options.anchor</b>.
+                    <b>.getAnchor</b> calls <b>.get</b> to determine the current value of the anchor.
+                </div>
+
+                <a name=".hasAnchor"></a><div><span>.hasAnchor (pairs)</span> Returns <i>TRUE</i> if <b>pairs</b> has the anchor property defined.
+                    <span class="where">
+                        where:
+                        <span>pairs<span> (obiect)</span></span> key/value pairs
+                    </span>
+                    A test is made to see if the <b>pairs</b> object contains the property named <b>options.anchor</b>. An example of use
+                     is processing a URL with <b>.parse</b> to find if there was an anchor in URL.
+                </div>
+
+                <a name=".init"></a><div><span>.init ()</span> Init the aciFragment plugin.
+                    In normal use - aciFragment should need to be initialized only once, bound on the 
+                    <i>document</i> object (to benefit from the internal cache implementation).
+                </div>              
+                
+                <a name=".parse"></a><div><span>.parse (url)</span> Parse the fragment section of an URL to create a list of key/value pairs.
+                    <span class="where">
+                        where:
+                        <span>url<span> (string)</span></span> URL that may contain a fragment portion
+                    </span>
+                    Returns an object where each property is a key/value pair.
+                </div>                
+                
+                <a name=".parseHash"></a><div><span>.parseHash ()</span> Parse the current fragment section of the URL to create a list of key/value pairs.
+                    Returns an object where each property is a key/value pair.
+                    <b>.parseHash</b> calls <b>.parse</b> for the current URL.
+                </div>                     
+
+                <a name=".replace"></a><div><span>.replace (pairs)</span> Replace the fragment portion with the variables defined by the key/value pairs.
+                    <span class="where">
+                        where:
+                        <span>pairs<span> (obiect)</span></span> key/value pairs
+                    </span>
+                    <b>.replace</b> trigger the <em>acifragment</em> event by changing the fragment section of the current URL.
+                </div>
+
+                <a name=".scroll"></a><div><span>.scroll ()</span> Scrolls the document to the current anchor.
+                    A test is made to see if the fragment portion of the current URL contains the variable named <b>options.anchor</b> to produce
+                    the scroll at the anchor defined by the value of the variable.
+                </div>                    
+                
+                <a name=".set"></a><div><span>.set (key, value)</span> Sets a new value for the <b>key</b>.
+                    <span class="where">
+                        where:
+                        <span>key<span> (string)</span></span> key name
+                        <span>value<span> (string)</span></span> the new value
+                    </span>
+                    If <b>value</b> is an empty string or <i>NULL</i> or not set, the variable with the <b>key</b> name will be removed.
+                    <b>.set</b> calls <b>.replace</b> to change the current value of the fragment section.
+                </div>                  
+                
+                <a name=".setAnchor"></a><div><span>.setAnchor (anchor)</span> Sets a new value for the anchor.
+                    <span class="where">
+                        where:
+                        <span>anchor<span> (string)</span></span> the new value
+                    </span>
+                     The anchor is defined by the variable named <b>options.anchor</b>.
+                     If <b>anchor</b> is an empty string or <i>NULL</i> or not set, the anchor will be removed.
+                     <b>.setAnchor</b> calls <b>.set</b> to change the current value of the fragment section.
+                </div>                 
+                
+                <a name=".update"></a><div><span>.update (pairs)</span> Change the variables defined by the key/value pairs.
+                    <span class="where">
+                        where:
+                        <span>pairs<span> (obiect)</span></span> key/value pairs
+                    </span>
+                    <b>.update</b> calls <b>.replace</b> to change the current value of the fragment section.
+                </div>
+                
+                <a name=".wasInit"></a><div><span>.wasInit ()</span> Returns <i>TRUE</i> if the plugin has been initialized.
+                </div>
+
+            </div>       
+
+        <p>aciFragment jQuery Plugin v1.0.0</p>
+        <p>http://acoderinsights.ro</p>
+
+        <p>Copyright (c) 2013 Dragos Ursu</p>
+        <p>Dual licensed under the MIT or GPL Version 2 licenses.</p>
+
+        <p>Require jQuery Library >= v1.7.1 http://jquery.com</p>
+        <p>+ aciPlugin >= v1.1.1 https://github.com/dragosu/jquery-aciPlugin</p>
+
+        <p>Date: Apr Wed 24 20:00 2013 +0200</p>
+
+    </body>
+</html>

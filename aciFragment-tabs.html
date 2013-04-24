@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="language" content="en" />
+        <meta name="robots" content="index, follow" />
+        <title>aciFragment UI Tabs demo - Store/read URL fragment variables</title>
+        <meta name="description" content="A demo to show you how aciFragment can be used with UI Tabs, check the plugin page to see all the functions exposed by the API" />
+        <meta name="keywords" content="aciFragment, url fragment, get variables, hash value, javascript, jQuery" />
+        <link rel="stylesheet" type="text/css" href="css/demo.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="css/ui-lightness/jquery-ui-1.10.2.custom.min.css" media="all" />
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/jquery.aciPlugin.min.js"></script>
+        <script type="text/javascript" src="js/jquery.aciFragment.js"></script>
+        <script type="text/javascript" src="js/jquery-ui-1.10.2.custom.min.js"></script>
+    </head>
+    <body>
+
+        <a id="top"></a>
+
+        <div>
+
+            <p>Here you have a demo using aciFragment with jQuery UI Tabs.</p>
+
+            <p>To see it in action: select any tab panes then use the anchors. Also, select the sub_tabs_one under the pane#2 from tabs_one.<br />
+                Use the back/forward history buttons in your browser. This is to show how it can be used with UI Tabs.</p>
+            <p>As you can see not so many lines of code, maybe better to wrap all this into an extension for aciFragment someday... :)</p>
+
+            <p><a class="anchor" href="#tabs_one&tabs_one=0" title="Go to Tabs one">tabs_one (select pane#1)</a> |  
+                <a class="anchor" href="#sub_tabs_one&tabs_one=1&sub_tabs_one=2" title="Go to Sub-Tabs one">sub_tabs_one (select pane#3 - under tabs_one with pane#2 selected)</a> | 
+                <a class="anchor" href="#tabs_two" title="Go to Tabs two">tabs_two (any pane selected)</a> | 
+                <a class="anchor" href="#top" title="Go to top">Top</a></p>
+
+            <div id="tabs_one">
+                <ul>
+                    <li><a href="#tabs_one_1"><span>One</span></a></li>
+                    <li><a href="#tabs_one_2"><span>Two</span></a></li>
+                    <li><a href="#tabs_one_3"><span>Three</span></a></li>
+                </ul>
+                <div id="tabs_one_1">
+                    <p>First tab is active by default:</p>
+                    <pre><code>$( "#tabs" ).tabs(); </code></pre>
+                </div>
+                <div id="tabs_one_2">
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+
+                    <div id="sub_tabs_one">
+                        <ul>
+                            <li><a href="#sub_tabs_one_1"><span>One</span></a></li>
+                            <li><a href="#sub_tabs_one_2"><span>Two</span></a></li>
+                            <li><a href="#sub_tabs_one_3"><span>Three</span></a></li>
+                        </ul>
+                        <div id="sub_tabs_one_1">
+                            <p>First tab is active by default:</p>
+                            <pre><code>$( "#tabs" ).tabs(); </code></pre>
+                        </div>
+                        <div id="sub_tabs_one_2">
+                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                        </div>
+                        <div id="sub_tabs_one_3">
+                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                        </div>
+                    </div>                    
+
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                </div>
+                <div id="tabs_one_3">
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                </div>
+            </div>
+
+            <p><a class="anchor" href="#tabs_one&tabs_one=0" title="Go to Tabs one">tabs_one (select pane#1)</a> |  
+                <a class="anchor" href="#sub_tabs_one&tabs_one=1&sub_tabs_one=2" title="Go to Sub-Tabs one">sub_tabs_one (select pane#3 - under tabs_one with pane#2 selected)</a> | 
+                <a class="anchor" href="#tabs_two" title="Go to Tabs two">tabs_two (any pane selected)</a> | 
+                <a class="anchor" href="#top" title="Go to top">Top</a></p>
+
+            <div id="tabs_two">
+                <ul>
+                    <li><a href="#tabs_two_1"><span>One</span></a></li>
+                    <li><a href="#tabs_two_2"><span>Two</span></a></li>
+                    <li><a href="#tabs_two_3"><span>Three</span></a></li>
+                </ul>
+                <div id="tabs_two_1">
+                    <p>First tab is active by default:</p>
+                    <pre><code>$( "#tabs" ).tabs(); </code></pre>
+                </div>
+                <div id="tabs_two_2">
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                </div>
+                <div id="tabs_two_3">
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                </div>
+            </div>            
+
+            <p><a class="anchor" href="#tabs_one&tabs_one=0" title="Go to Tabs one">tabs_one (select pane#1)</a> |  
+                <a class="anchor" href="#sub_tabs_one&tabs_one=1&sub_tabs_one=2" title="Go to Sub-Tabs one">sub_tabs_one (select pane#3 - under tabs_one with pane#2 selected)</a> | 
+                <a class="anchor" href="#tabs_two" title="Go to Tabs two">tabs_two (any pane selected)</a> | 
+                <a class="anchor" href="#top" title="Go to top">Top</a></p>
+
+            <div style="clear:both"><pre style="padding:30px;border:1px dashed #000;background:#f6f6f6;display:inline-block;"></pre></div>
+
+        </div>
+
+        <script id="code" language="javascript" type="text/javascript">
+
+            $(function() {
+
+                // init once
+                $(document).aciFragment();
+
+                // get the api only once (for this demo)
+                var hashApi = $(document).aciFragment('api');
+
+                // programmatically add hash params
+                $('a.anchor').click(function() {
+
+                    // use the default click implementation
+                    // will parse/set the values found in the HREF
+                    hashApi.click($(this));
+
+                    // prevent default action
+                    return false;
+                });
+
+                // listen for 'acifragment' to select tabs based on 
+                // fragment variables (on hash change) & do the scrolling
+                $(document).bind('acifragment', function(event, api, anchorChanged) {
+
+                    // the following is just to select a tab pane when you click on a link (not the tabs) -->>
+
+                    // the tabs_one fragment variable to tell the #pane for tabs_one
+                    var tab1 = api.get('tabs_one');
+
+                    if (tab1) {
+                        // select pane for tabs_one
+                        $('#tabs_one').tabs('option', 'active', tab1);
+                    }
+
+                    // the sub_tabs_one fragment variable to tell the #pane for sub_tabs_one
+                    var subTab1 = api.get('sub_tabs_one');
+
+                    if (subTab1) {
+                        // select pane for tabs_one
+                        $('#sub_tabs_one').tabs('option', 'active', subTab1);
+                    }
+                    
+                    // the tabs_two fragment variable to tell the #pane for tabs_two
+                    var tab2 = api.get('tabs_two');
+
+                    if (tab2) {
+                        // select pane for tabs_two
+                        $('#tabs_two').tabs('option', 'active', tab2);
+                    }                    
+
+                    // <<-- the following is just to select a tab pane when you click on a link (not the tabs)
+
+                    if (anchorChanged) {
+                        // only scroll if clicked over a link with the anchor set
+                        // or if the anchor value has changed
+                        api.scroll();
+                    }
+                });
+
+                $('#tabs_one,#sub_tabs_one,#tabs_two').tabs();
+
+                // the other side of the coin: we need to set fragment variables
+                // when we set the active pane too... here it is:
+
+                $('#tabs_one,#sub_tabs_one,#tabs_two').on('tabsactivate', function(event, ui) {
+                    
+                    // get tabs (div) ID
+                    var tab = ui.newTab.parents('div:first').attr('id');
+                    
+                    // get selected index (make it 0 based)
+                    var index = ui.newPanel.index() - 1;
+                    
+                    // fragment magic here... :)
+                    hashApi.set(tab, index);
+                    
+                });
+
+            });
+
+        </script>
+
+        <script type="text/javascript">
+
+            $(function() {
+
+                $('div:last>pre').text($('#code').text());
+
+            });
+
+        </script>        
+
+    </body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="language" content="en" />
+        <meta name="robots" content="index, follow" />
+        <title>aciFragment demo - Store/read URL fragment variables</title>
+        <meta name="description" content="A demo to show you how aciFragment can be used, check the plugin page to see all the functions exposed by the API" />
+        <meta name="keywords" content="aciFragment, url fragment, get variables, hash value, javascript, jQuery" />
+        <link rel="stylesheet" type="text/css" href="css/demo.css" media="all" />
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/jquery.aciPlugin.min.js"></script>
+        <script type="text/javascript" src="js/jquery.aciFragment.js"></script>
+    </head>
+    <body>
+
+        <a id="top"></a>
+
+        <div>
+
+            <p>Here you have a demo using aciFragment to store/read variables set in the fragment part of a URL.
+                The browser history is working as expected, the stored key/value pairs can be updated/read by using the API.<br />
+                The default anchor handling is still available, the aciFragment have also basic support for scrolling to the anchor using
+                animations. <br /> aciFragment it's not working only with the links (a default click handler function you can use is implemented already)
+                but you can set the anchor part or any other key/value pair from within your JavaScript code.<br /> The 'acifragment' event
+                will be triggered on any change.</p>
+            
+            <p>See a cool :) jQuery UI Tabs demo &gt;&gt;&gt; <a href="aciFragment-tabs.html" target="_blank" title="aciFragment with jQuery UI Tabs">here</a> &lt;&lt;&lt;</p>
+
+            <p><a class="anchor" href="#heading_one" title="Read heading one">Heading one</a></p>
+            <p><a class="anchor" href="#heading_two" title="Read heading two">Heading two</a></p>
+            <p>[<a class="anchor" href="#parameter1=value1" title="Add hash parameter">parameter1 = value1</a>] 
+                [<a class="anchor" href="#parameter1=new_value1" title="Add hash parameter">parameter1 = new_value1</a>]  
+                [<a class="anchor" href="#parameter1=" title="Remove hash parameter">remove parameter1</a>] 
+                [<a class="anchor" href="#parameter2=value2">parameter2 = value2</a>] 
+                [<a class="anchor" href="#parameter2=new_value2">parameter2 = new_value2</a>]
+                [<a class="anchor" href="#parameter2=" title="Remove hash parameter">remove parameter2</a>] </p>
+
+            <a id="heading_one">Heading one</a> 
+
+            ( <a class="anchor" href="#heading_one" title="Read heading one">Heading one</a> |
+            <a class="anchor" href="#heading_two" title="Read heading two">Heading two</a> |
+            <a class="anchor" href="#top" title="Go to top">Top of the page</a> )
+
+            <p class="section">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute 
+                irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
+                cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+            <a id="heading_two">Heading two</a>
+
+            ( <a class="anchor" href="#heading_one" title="Read heading one">Heading one</a> | 
+            <a class="anchor" href="#heading_two" title="Read heading two">Heading two</a> |
+            <a class="anchor" href="#top" title="Go to top">Top of the page</a> )
+
+            <p class="section">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque 
+                ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem 
+                quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi 
+                nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non
+                numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, 
+                quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem 
+                vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum 
+                fugiat quo voluptas nulla pariatur?</p>
+
+            <p>
+                <input id="anchor_heading1" type="button" value="Anchor = Heading one" />
+                <input id="anchor_heading2" type="button" value="Anchor = Heading two" />
+                <input id="remove_anchor" type="button" value="Remove anchor" />
+                <input id="anchor_is" type="button" value="Anchor value?" />
+                <input id="param_1" type="button" value="parameter1 = value1" />
+                <input id="param_1b" type="button" value="parameter1 = value2" />
+                <input id="remove_param_1" type="button" value="remove parameter1" />
+                <input id="param_1_is" type="button" value="parameter1 value?" />
+            </p>
+
+            <div style="clear:both"><pre style="padding:30px;border:1px dashed #000;background:#f6f6f6;display:inline-block;"></pre></div>
+
+        </div>
+
+        <script id="code" language="javascript" type="text/javascript">
+
+            $(function() {
+
+                // init once
+                $(document).aciFragment();
+
+                // get the api only once (for this demo)
+                var hashApi = $(document).aciFragment('api');
+
+                // programmatically process hash params
+                $('a.anchor').click(function() {
+
+                    // use the default click implementation
+                    // will parse/set the values found in the HREF
+                    hashApi.click($(this));
+
+                    // prevent default action
+                    return false;
+                });
+
+                // listen for 'acifragment' to do the scrolling
+                $(document).bind('acifragment', function(event, api, anchorChanged) {
+                    if (anchorChanged) {
+                        // only scroll if clicked over a link with the anchor set
+                        // or if the anchor value has changed
+                        api.scroll();
+                    }
+                });
+
+                // a few buttons to play with ...
+
+                $('#anchor_heading1').click(function() {
+                    // the fast way
+                    hashApi.setAnchor('heading_one');
+                    // or:
+                    // hashApi.set($.fn.aciFragment.defaults.anchor, 'heading_one');
+                });
+
+                $('#anchor_heading2').click(function() {
+                    // the fast way
+                    hashApi.setAnchor('heading_two');
+                    // or:
+                    // hashApi.set($.fn.aciFragment.defaults.anchor, 'heading_two');
+                });
+
+                $('#remove_anchor').click(function() {
+                    // the fast way
+                    hashApi.setAnchor(null);
+                    // or:
+                    // hashApi.set($.fn.aciFragment.defaults.anchor, null);
+                });
+
+                $('#anchor_is').click(function() {
+                    alert('The anchor value is: ' + hashApi.getAnchor());
+                });
+
+                $('#param_1').click(function() {
+                    hashApi.set('parameter1', 'value1');
+                });
+
+                $('#param_1b').click(function() {
+                    hashApi.set('parameter1', 'value2');
+                });
+
+                $('#remove_param_1').click(function() {
+                    hashApi.set('parameter1', null);
+                });
+
+                $('#param_1_is').click(function() {
+                    alert('The [parameter1] value is: ' + hashApi.get('parameter1'));
+                });
+
+            });
+
+        </script>
+
+        <script type="text/javascript">
+
+            $(function() {
+
+                $('pre').text($('#code').text());
+
+            });
+
+        </script>        
+
+    </body>
+</html>

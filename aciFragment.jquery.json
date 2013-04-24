@@ -1,0 +1,38 @@
+{
+    "name": "aciFragment",
+    "title": "aciFragment - Store/read URL fragment variables",
+    "description": "aciFragment can be used to store multiple key/value pairs into the fragment part of the URL, it is thus possible to implement interactive widgets that save states into the URL fragment and in - the same time - have the browser history work. aciFragment has basic scroll support (can use animations too), a default API onclick handler (you can call the API method from inside your link onclick handlers) and a custom event you can listen for - even in browsers without 'hashchange' native support.",
+    "keywords": [
+    "url",
+    "hash",
+    "fragment",
+    "parser"
+    ],
+    "version": "1.0.0",
+    "author": {
+        "name": "Dragos Ursu",
+        "email":"dragosu@acoderinsights.ro",
+        "url": "https://github.com/dragosu"
+    },
+    "maintainers": [{
+        "name": "Dragos Ursu",
+        "email":"dragosu@acoderinsights.ro",
+        "url": "https://github.com/dragosu"
+    }],
+    "licenses": [{
+        "type": "MIT",
+        "url": "http://acoderinsights.ro/source/aciFragment/mit-licence.txt"
+    },{
+        "type": "GPLv2",
+        "url": "http://acoderinsights.ro/source/aciFragment/gpl-v2-licence.txt"
+    }],
+    "homepage": "http://acoderinsights.ro",
+    "demo": "http://acoderinsights.ro/source/aciFragment/aciFragment.html",
+    "download": "http://acoderinsights.ro/source/zip/aciFragment.zip",
+    "docs": "http://acoderinsights.ro/en/aciFragment-url-hash-fragment-variable-parser",
+    "bugs": "https://github.com/dragosu/jquery-aciFragment/issues",
+    "dependencies": {
+        "jquery": ">=1.7.1",
+        "aciPlugin": ">=1.1.1"
+    }
+}
