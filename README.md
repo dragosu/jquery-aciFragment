@@ -6,7 +6,7 @@ Features:
 - possibility of storing/reading variables from the fragment section of a URL
   (the value following the first # found in the URL);
 
-- the keys/values ??are automatically encoded/decoded and the URL is changed to
+- the keys/values are automatically encoded/decoded and the URL is changed to
   preserve the value of the anchor (if any);
 
 - aciFragment provides a method that can be called from within the
@@ -23,10 +23,11 @@ $(function(){
     $('a').click(function() {
         api.click($(this));
         return false;
-        });
     });
 
-aciTree jQuery Plugin v1.0.0
+});
+
+aciFragment jQuery Plugin v1.0.0
 http://acoderinsights.ro
 
 Copyright (c) 2013 Dragos Ursu
