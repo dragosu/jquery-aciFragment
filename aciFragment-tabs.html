@@ -24,7 +24,6 @@
 
             <p>To see it in action: select any tab panes then use the anchors. Also, select the sub_tabs_one under the pane#2 from tabs_one.<br />
                 Use the back/forward history buttons in your browser. This is to show how it can be used with UI Tabs.</p>
-            <p>As you can see not so many lines of code, maybe better to wrap all this into an extension for aciFragment someday... :)</p>
 
             <p><a class="anchor" href="#tabs_one&tabs_one=0" title="Go to Tabs one">tabs_one (select pane#1)</a> |  
                 <a class="anchor" href="#sub_tabs_one&tabs_one=1&sub_tabs_one=2" title="Go to Sub-Tabs one">sub_tabs_one (select pane#3 - under tabs_one with pane#2 selected)</a> | 
@@ -112,23 +111,8 @@
         <script id="code" language="javascript" type="text/javascript">
 
             $(function() {
-
-                // init once
-                $(document).aciFragment();
-
-                // get the api only once (for this demo)
-                var hashApi = $(document).aciFragment('api');
-
-                // programmatically add hash params
-                $('a.anchor').click(function() {
-
-                    // use the default click implementation
-                    // will parse/set the values found in the HREF
-                    hashApi.click($(this));
-
-                    // prevent default action
-                    return false;
-                });
+                
+                // first listen to the event to be able to respond after the aciFragment init
 
                 // listen for 'acifragment' to select tabs based on 
                 // fragment variables (on hash change) & do the scrolling
@@ -169,23 +153,38 @@
                     }
                 });
 
-                $('#tabs_one,#sub_tabs_one,#tabs_two').tabs();
-
                 // the other side of the coin: we need to set fragment variables
-                // when we set the active pane too... here it is:
-
+                // when we set the Tabs active pane too... here it is:
                 $('#tabs_one,#sub_tabs_one,#tabs_two').on('tabsactivate', function(event, ui) {
                     
                     // get tabs (div) ID
-                    var tab = ui.newTab.parents('div:first').attr('id');
+                    var tabId = ui.newTab.parents('div:first').attr('id');
                     
                     // get selected index (make it 0 based)
                     var index = ui.newPanel.index() - 1;
                     
                     // fragment magic here... :)
-                    hashApi.set(tab, index);
+                    $(document).aciFragment('api').set(tabId, index);
                     
-                });
+                });   
+
+                // init the tabs
+                $('#tabs_one,#sub_tabs_one,#tabs_two').tabs();
+                
+                // init aciFragment once, the 'acifragment' event will fire
+                // (that's why we should listen for the event before we init)
+                $(document).aciFragment();
+
+                // programmatically add hash params
+                $('a.anchor').click(function() {
+
+                    // use the default click implementation
+                    // will parse/set the values found in the HREF
+                    $(document).aciFragment('api').click($(this));
+
+                    // prevent default action
+                    return false;
+                });                
 
             });
 

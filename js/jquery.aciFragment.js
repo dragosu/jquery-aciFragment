@@ -1,6 +1,6 @@
 
 /*
- * aciFragment jQuery Plugin v1.0.0
+ * aciFragment jQuery Plugin v1.1.0
  * http://acoderinsights.ro
  *
  * Copyright (c) 2013 Dragos Ursu
@@ -9,7 +9,7 @@
  * Require jQuery Library >= v1.7.1 http://jquery.com
  * + aciPlugin >= v1.1.1 https://github.com/dragosu/jquery-aciPlugin
  *
- * Date: Apr Wed 24 20:00 2013 +0200
+ * Date: Apr Fri 26 18:00 2013 +0200
  */
 
 /*
@@ -87,6 +87,8 @@
             } else {
                 this._change();
             }
+            this._instance.anchor = true;
+            this._trigger();
             this._super();
         },
         // trigger the event
@@ -102,7 +104,7 @@
                 this._trigger();
                 this._instance.lastHash = hash;
             }
-            this._instance.timeOut = setTimeout(function() {
+            this._instance.timeOut = window.setTimeout(function() {
                 _this._change();
             }, this._instance.options.poolDelay);
         },
@@ -159,9 +161,9 @@
                 for (var i in vars) {
                     pair = vars[i].split('=');
                     if (pair.length > 1) {
-                        parsed[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
+                        parsed[window.decodeURIComponent(pair[0])] = window.decodeURIComponent(pair[1]);
                     } else {
-                        parsed[this._instance.options.anchor] = decodeURIComponent(pair[0]);
+                        parsed[this._instance.options.anchor] = window.decodeURIComponent(pair[0]);
                     }
                 }
             }
@@ -195,7 +197,7 @@
         // get a hash key value
         get: function(key, defaultValue) {
             var parsed = this.parseHash();
-            if ((parsed[key] !== null) && (parsed[key] !== undefined) && String(parsed[key]).length) {
+            if ((parsed[key] !== null) && (parsed[key] !== undefined) && window.String(parsed[key]).length) {
                 return parsed[key];
             } else {
                 return defaultValue;
@@ -208,8 +210,8 @@
         replace: function(pairs, skipAnchor) {
             var hash = [];
             for (var i in pairs) {
-                if ((pairs[i] !== null) && (pairs[i] !== undefined) && String(pairs[i]).length) {
-                    hash[hash.length] = encodeURIComponent(i) + '=' + encodeURIComponent(pairs[i]);
+                if ((pairs[i] !== null) && (pairs[i] !== undefined) && window.String(pairs[i]).length) {
+                    hash[hash.length] = window.encodeURIComponent(i) + '=' + window.encodeURIComponent(pairs[i]);
                 }
             }
             if (!skipAnchor && this.hasAnchor(pairs)) {
@@ -258,7 +260,7 @@
             if (this._instance.native) {
                 $(window).unbind(this._instance.nameSpace);
             }
-            clearTimeout(this._instance.timeOut);
+            window.clearTimeout(this._instance.timeOut);
             this._super();
         }
     };

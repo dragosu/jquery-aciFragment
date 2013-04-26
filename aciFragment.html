@@ -81,7 +81,18 @@
 
             $(function() {
 
+                // listen for 'acifragment' to do the scrolling
+                $(document).bind('acifragment', function(event, api, anchorChanged) {
+                    if (anchorChanged) {
+                        // only scroll if clicked over a link with the anchor set
+                        // or if the anchor value has changed
+                        api.scroll();
+                    }
+                });
+
                 // init once
+                // at this point the 'acifragment' event will fire
+                // (that's why we should listen for the event before we init)
                 $(document).aciFragment();
 
                 // get the api only once (for this demo)
@@ -96,15 +107,6 @@
 
                     // prevent default action
                     return false;
-                });
-
-                // listen for 'acifragment' to do the scrolling
-                $(document).bind('acifragment', function(event, api, anchorChanged) {
-                    if (anchorChanged) {
-                        // only scroll if clicked over a link with the anchor set
-                        // or if the anchor value has changed
-                        api.scroll();
-                    }
                 });
 
                 // a few buttons to play with ...
